@@ -16,12 +16,16 @@ defmodule ElixirWorkshopApp.Router do
   scope "/", ElixirWorkshopApp do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", RoomController, :index
     get "/registrations/new", RegistrationController, :new
     post "/registrations", RegistrationController, :create
     get    "/login",  SessionController, :new
     post   "/login",  SessionController, :create
     delete "/logout", SessionController, :delete
+    get    "/rooms/new",  RoomController, :new
+    post   "/rooms",  RoomController, :create
+    delete "/rooms/:id", RoomController, :delete
+    get "/rooms/:id", RoomController, :show
   end
 
   # Other scopes may use custom stacks.
