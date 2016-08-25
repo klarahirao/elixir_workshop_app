@@ -1,11 +1,15 @@
 defmodule ElixirWorkshopApp.RoomController do
   use ElixirWorkshopApp.Web, :controller
-
   alias ElixirWorkshopApp.Room
 
   def index(conn, _params) do
     rooms = Repo.all(Room)
     render(conn, "index.html", rooms: rooms)
+  end
+
+  def show(conn, %{ "id" => id }) do
+    room = Repo.get!(Room, id)
+    conn |> render :show, room_name: room.name
   end
 
   def new(conn, _params) do
@@ -24,10 +28,6 @@ defmodule ElixirWorkshopApp.RoomController do
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
-  end
-
-  def show(conn, %{"id" => id}) do
-
   end
 
   def delete(conn, %{"id" => id}) do

@@ -2,7 +2,7 @@ defmodule ElixirWorkshopApp.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", ElixirWorkshopApp.RoomChannel
+  channel "room:*", ElixirWorkshopApp.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

@@ -17,7 +17,7 @@
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
             <%= if logged_in?(@conn) do %>
-              <li><%= current_user(@conn).email %></li>
+              <li id="current-user"><%= current_user(@conn).email %></li>
               <li><%= link "Logout", to: session_path(@conn, :delete), method: :delete %></li>
             <% else %>
               <li><%= link "Login",    to: "/login" %></li>
@@ -36,6 +36,7 @@
       </main>
 
     </div> <!-- /container -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
