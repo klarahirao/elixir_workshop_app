@@ -4,6 +4,7 @@ defmodule ElixirWorkshopApp.User do
   schema "users" do
     field :email, :string
     field :crypted_password, :string
+    field :password, :string, virtual: true
 
     timestamps()
   end
@@ -11,10 +12,15 @@ defmodule ElixirWorkshopApp.User do
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
+  @required_fields ~w(email password)
+  @optional_fields ~w()
+
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:email, :crypted_password])
-    |> validate_required([:email, :crypted_password])
+    |> cast(params, @required_fields, @optional_fields)
+    |> validate_required([:email, :password])
     |> unique_constraint(:email)
+    |> validate_format(:email, ~r/@/)
+    |> validate_length(:password, min: 5)
   end
 end
