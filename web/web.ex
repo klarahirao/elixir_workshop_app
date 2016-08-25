@@ -52,6 +52,7 @@ defmodule ElixirWorkshopApp.Web do
       import ElixirWorkshopApp.Router.Helpers
       import ElixirWorkshopApp.ErrorHelpers
       import ElixirWorkshopApp.Gettext
+      import ElixirWorkshopApp.Session, only: [current_user: 1, logged_in?: 1]
     end
   end
 
