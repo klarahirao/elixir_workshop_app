@@ -4,6 +4,7 @@ defmodule ElixirWorkshopApp.Room do
   schema "rooms" do
     field :name, :string
 
+    has_many :messages, ElixirWorkshopApp.Message
     timestamps()
   end
 
