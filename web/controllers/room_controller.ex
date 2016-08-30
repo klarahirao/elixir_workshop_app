@@ -3,11 +3,13 @@ defmodule ElixirWorkshopApp.RoomController do
   alias ElixirWorkshopApp.Room
   alias ElixirWorkshopApp.Message
   import Ecto.Query, only: [from: 2]
+  import ElixirWorkshopApp.Session, only: [current_user: 1]
 
   plug ElixirWorkshopApp.Plugs.Authenticate
 
   def index(conn, _params) do
     rooms = Repo.all(Room)
+    |> Repo.preload :user
     render(conn, "index.html", rooms: rooms)
   end
 
@@ -24,6 +26,8 @@ defmodule ElixirWorkshopApp.RoomController do
   end
 
   def create(conn, %{"room" => room_params}) do
+    room_params = room_params
+    |> Map.put("user_id", current_user(conn).id)
     changeset = Room.changeset(%Room{}, room_params)
 
     case Repo.insert(changeset) do

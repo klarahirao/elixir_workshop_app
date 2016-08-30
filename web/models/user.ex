@@ -7,6 +7,7 @@ defmodule ElixirWorkshopApp.User do
     field :password, :string, virtual: true
 
     has_many :messages, ElixirWorkshopApp.Message
+    has_many :rooms, ElixirWorkshopApp.Message
     timestamps()
   end
 

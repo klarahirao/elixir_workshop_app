@@ -5,6 +5,7 @@ defmodule ElixirWorkshopApp.Room do
     field :name, :string
 
     has_many :messages, ElixirWorkshopApp.Message
+    belongs_to :user, ElixirWorkshopApp.User
     timestamps()
   end
 
@@ -13,7 +14,7 @@ defmodule ElixirWorkshopApp.Room do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name])
+    |> cast(params, [:name, :user_id])
     |> validate_required([:name])
   end
 end

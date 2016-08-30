@@ -11,7 +11,7 @@
   <tbody>
 <%= for room <- @rooms do %>
     <tr>
-      <td><%= room.name %></td>
+      <td><%= room.name %> - admin: <%= room.user.email %></td>
 
       <td class="text-right">
         <%= link "Show", to: room_path(@conn, :show, room), class: "btn btn-default btn-xs" %>
