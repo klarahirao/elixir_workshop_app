@@ -62,17 +62,17 @@ let messagesContainer = $("#chat-box")
 
 chatInput.on("keypress", event => {
   if(event.keyCode === 13){
-  channel.push("new_msg", {body: chatInput.val()})
+  channel.push("new_msg", {user: user, body: chatInput.val(), room_id: roomId})
   chatInput.val("")
 }
 })
 
 channel.on("new_msg", payload => {
-  messagesContainer.append(`<br/>[${user}]: ${payload.body}`)
+  messagesContainer.append(`<br/>[${payload.user}]: ${payload.body}`)
 })
 
 channel.join()
-  .receive("ok", resp => { console.log(`Joined successfully room ${roomId}!`, resp) })
+  .receive("ok", resp => { console.log(`Joined successfully!`, resp) })
 .receive("error", resp => { console.log("Unable to join", resp) })
 
 export default socket

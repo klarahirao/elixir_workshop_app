@@ -5,8 +5,16 @@ defmodule ElixirWorkshopApp.RoomChannel do
     {:ok, socket}
   end
 
-  def handle_in("new_msg", %{"body" => body}, socket) do
-    broadcast! socket, "new_msg", %{body: body}
+  def handle_in("new_msg", %{"body" => body, "user" => user, "room_id" => room_id}, socket) do
+    create_message(body, user, room_id)
+    broadcast! socket, "new_msg", %{body: body, user: user}
     {:noreply, socket}
+  end
+
+  defp create_message(body, user, room_id) do
+    user = ElixirWorkshopApp.Repo.get_by!(ElixirWorkshopApp.User, email: user)
+    params = %{user_id: user.id, room_id: room_id, body: body}
+    changeset = ElixirWorkshopApp.Message.changeset(%ElixirWorkshopApp.Message{}, params)
+    ElixirWorkshopApp.Repo.insert!(changeset)
   end
 end

@@ -1,6 +1,9 @@
 defmodule ElixirWorkshopApp.RoomController do
   use ElixirWorkshopApp.Web, :controller
   alias ElixirWorkshopApp.Room
+  alias ElixirWorkshopApp.Message
+  import Ecto.Query, only: [from: 2]
+
 
   def index(conn, _params) do
     rooms = Repo.all(Room)
@@ -8,8 +11,10 @@ defmodule ElixirWorkshopApp.RoomController do
   end
 
   def show(conn, %{ "id" => id }) do
-    room = Repo.get!(Room, id)
-    conn |> render :show, room_name: room.name
+    query = from m in Message, where: m.room_id == ^id
+    messages = Repo.all(query)
+    |> Repo.preload :user
+    render(conn, :show, room_id: id, messages: messages)
   end
 
   def new(conn, _params) do
