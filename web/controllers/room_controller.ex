@@ -4,6 +4,7 @@ defmodule ElixirWorkshopApp.RoomController do
   alias ElixirWorkshopApp.Message
   import Ecto.Query, only: [from: 2]
 
+  plug ElixirWorkshopApp.Plugs.Authenticate
 
   def index(conn, _params) do
     rooms = Repo.all(Room)
