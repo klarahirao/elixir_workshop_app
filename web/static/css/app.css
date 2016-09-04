@@ -4,3 +4,6 @@
     overflow: scroll;
     margin-bottom: 50px;
 }
+#room-id {
+    display: none;
+}

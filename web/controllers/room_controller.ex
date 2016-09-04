@@ -14,10 +14,11 @@ defmodule ElixirWorkshopApp.RoomController do
   end
 
   def show(conn, %{ "id" => id }) do
+    room = Repo.get!(Room, id)
     query = from m in Message, where: m.room_id == ^id
     messages = Repo.all(query)
     |> Repo.preload :user
-    render(conn, :show, room_id: id, messages: messages)
+    render(conn, :show, room: room, messages: messages)
   end
 
   def new(conn, _params) do
