@@ -21,7 +21,7 @@ config :elixir_workshop_app, ElixirWorkshopApp.Endpoint,
 config :elixir_workshop_app, ElixirWorkshopApp.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
-  pool_size: 18,
+  pool_size: System.get_env("POOL_SIZE"),
   ssl: true
 
 # Do not print debug messages in production
