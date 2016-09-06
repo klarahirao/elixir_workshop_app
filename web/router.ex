@@ -9,10 +9,6 @@ defmodule ElixirWorkshopApp.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   scope "/", ElixirWorkshopApp do
     pipe_through :browser # Use the default browser stack
 
@@ -27,9 +23,4 @@ defmodule ElixirWorkshopApp.Router do
     delete "/rooms/:id", RoomController, :delete
     get "/rooms/:id", RoomController, :show
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", ElixirWorkshopApp do
-  #   pipe_through :api
-  # end
 end

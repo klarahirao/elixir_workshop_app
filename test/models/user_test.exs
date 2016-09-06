@@ -3,7 +3,7 @@ defmodule ElixirWorkshopApp.UserTest do
 
   alias ElixirWorkshopApp.User
 
-  @valid_attrs %{crypted_password: "some content", email: "some content"}
+  @valid_attrs %{email: "email@example.com", password: "password"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
