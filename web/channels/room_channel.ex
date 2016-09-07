@@ -14,7 +14,7 @@ defmodule ElixirWorkshopApp.RoomChannel do
   defp create_message(body, user, room_id) do
     user = ElixirWorkshopApp.Repo.get_by!(ElixirWorkshopApp.User, email: user)
     params = %{user_id: user.id, room_id: room_id, body: body}
-    changeset = ElixirWorkshopApp.Message.changeset(%ElixirWorkshopApp.Message{}, params)
-    ElixirWorkshopApp.Repo.insert!(changeset)
+    ElixirWorkshopApp.Message.changeset(%ElixirWorkshopApp.Message{}, params)
+    |> ElixirWorkshopApp.Repo.insert!
   end
 end

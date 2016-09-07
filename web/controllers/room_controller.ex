@@ -9,7 +9,7 @@ defmodule ElixirWorkshopApp.RoomController do
 
   def index(conn, _params) do
     rooms = Repo.all(Room)
-    |> Repo.preload :user
+    |> Repo.preload(:user)
     render(conn, "index.html", rooms: rooms)
   end
 
@@ -17,7 +17,7 @@ defmodule ElixirWorkshopApp.RoomController do
     room = Repo.get!(Room, id)
     query = from m in Message, where: m.room_id == ^id
     messages = Repo.all(query)
-    |> Repo.preload :user
+    |> Repo.preload(:user)
     render(conn, :show, room: room, messages: messages)
   end
 
