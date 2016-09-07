@@ -6,7 +6,7 @@ defmodule ElixirWorkshopApp.Plugs.Authenticate do
 
   def init(default), do: default
 
-  def call(conn, default) do
+  def call(conn, _default) do
     if current_user(conn) do
       conn
     else
