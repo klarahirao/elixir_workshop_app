@@ -1,12 +1,6 @@
 defmodule ElixirWorkshopApp.RoomChannelTest do
   use ElixirWorkshopApp.ChannelCase
 
-  alias ElixirWorkshopApp.RoomChannel
-  alias ElixirWorkshopApp.User
-  alias ElixirWorkshopApp.Room
-  alias ElixirWorkshopApp.Repo
-  alias ElixirWorkshopApp.UserSocket
-
   test "new_msg broadcasts message" do
     # Given
     room = Room.changeset(%Room{}, %{name: "Room Name"}) |> Repo.insert!

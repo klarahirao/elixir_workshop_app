@@ -24,7 +24,10 @@ defmodule ElixirWorkshopApp.ChannelCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-
+      alias ElixirWorkshopApp.RoomChannel
+      alias ElixirWorkshopApp.User
+      alias ElixirWorkshopApp.Room
+      alias ElixirWorkshopApp.UserSocket
 
       # The default endpoint for testing
       @endpoint ElixirWorkshopApp.Endpoint
