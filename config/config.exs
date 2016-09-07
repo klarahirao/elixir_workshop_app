@@ -5,6 +5,8 @@
 # is restricted to this project.
 use Mix.Config
 
+config :hound, driver: "chrome_driver"
+
 # General application configuration
 config :elixir_workshop_app,
   ecto_repos: [ElixirWorkshopApp.Repo]
